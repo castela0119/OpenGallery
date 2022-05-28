@@ -1,3 +1,4 @@
+from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
 from django.contrib import auth
@@ -14,3 +15,8 @@ def signup_view(request):
   else:
     form = UserCreationForm()
     return render(request, 'signup.html', {'form' : form})
+
+
+def index(request):
+
+    return HttpResponse("Hello Django!")

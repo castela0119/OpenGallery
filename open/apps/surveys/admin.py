@@ -1,10 +1,31 @@
 from django.contrib import admin
 
 # Register your models here.
-from apps.surveys.models import Survey, Question, Choice, Reply, Results
+from apps.surveys.models import Survey, Question, Choice, Submission
 
-admin.site.register(Survey)
-admin.site.register(Question)
+class QuestionInline(admin.TabularInline):
+  model = Question
+  show_change_link = True
+
+class ChoiceInline(admin.TabularInline):
+  model = Choice
+
+
+class SurveyAdmin(admin.ModelAdmin):
+  inlines = [
+    QuestionInline
+  ]
+
+class QuestionAdmin(admin.ModelAdmin):
+  inlines = [
+    ChoiceInline
+  ]
+  
+class SubmissionAdmin(admin.ModelAdmin):
+  list_display = ('participant_email', 'status')
+
+
+admin.site.register(Survey, SurveyAdmin)
+admin.site.register(Question, QuestionAdmin)
 admin.site.register(Choice)
-admin.site.register(Reply)
-admin.site.register(Results)
+admin.site.register(Submission, SubmissionAdmin)
