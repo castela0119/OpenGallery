@@ -1,0 +1,3 @@
+{% if user.is_authenticated %}
+      {{ user.location }}에 사는 {{ user.university }}다니는 {{ user.nickname }} 안녕하세요!
+{% endif %}
