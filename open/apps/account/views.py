@@ -15,8 +15,3 @@ def signup_view(request):
   else:
     form = UserCreationForm()
     return render(request, 'signup.html', {'form' : form})
-
-
-def index(request):
-
-    return HttpResponse("Hello Django!")

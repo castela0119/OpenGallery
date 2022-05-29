@@ -3,6 +3,9 @@
 {% block "content" %}
 <h1>{{ survey.title }}</h1>
 
-{{ form.as_p }}
-
+<form action="{% url 'show-survey' survey.id %}" method="POST">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <input type="submit" name="submit" value="Submit" />
+</form>
 {% endblock %}
